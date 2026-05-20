@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -7,9 +6,6 @@
 <title>찾아가는 30주년 행사</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  /* =============================================
-     ✏️ 색상 & 기본 설정 (필요하면 여기서 변경)
-  ============================================= */
   :root {
     --bg: #fff8f4;
     --card-bg: #ffffff;
@@ -21,356 +17,73 @@
     --text-secondary: #6b4a30;
     --text-muted: #b07a58;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: var(--bg);
-    color: var(--text-primary);
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 300;
-    min-height: 100vh;
-    padding-bottom: 60px;
-  }
-
-  /* 상단 로고 */
-  .top-logo {
-    text-align: center;
-    padding: 24px 24px 0;
-  }
-  .top-logo img {
-    width: 180px;
-    opacity: 0.9;
-  }
-
-  /* 상단 헤더 */
-  .hero {
-    padding: 56px 24px 16px;
-    text-align: center;
-    position: relative;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #FE6B01, #ffad6b);
-  }
-  .badge {
-    display: inline-block;
-    font-size: 15px;
-    letter-spacing: 0.15em;
-    color: var(--accent-main);
-    border: 1px solid var(--accent-main);
-    padding: 4px 14px;
-    border-radius: 20px;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    font-weight: 500;
-  }
-  .hero h1 {
-    font-family: 'Noto Serif KR', serif;
-    font-size: clamp(22px, 6vw, 30px);
-    font-weight: 600;
-    line-height: 1.5;
-    margin-bottom: 16px;
-    color: var(--text-primary);
-  }
-  .hero p {
-    font-size: 17px;
-    line-height: 1.9;
-    color: var(--text-secondary);
-    max-width: 460px;
-    margin: 0 auto;
-  }
-
-  /* 섹션 구분선 */
-  .section {
-    padding: 0 20px;
-    max-width: 560px;
-    margin: 0 auto;
-  }
-  .section-title {
-    font-size: 15px;
-    letter-spacing: 0.12em;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    font-weight: 500;
-    margin: 40px 0 16px;
-    padding-left: 4px;
-  }
-
-
-  /* 지도 */
-  .map-section {
-    max-width: 560px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-  .map-container {
-    border: 1px solid var(--card-border);
-    border-radius: 16px;
-    overflow: hidden;
-    margin-top: 8px;
-  }
-  #kakaoMap {
-    width: 100%;
-    height: 340px;
-  }
-  .map-title {
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    font-weight: 500;
-    margin: 40px 0 16px;
-    padding-left: 4px;
-  }
-  /* 전체 영상 카드 */
-  .main-video-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 16px;
-    overflow: hidden;
-  }
-  .main-video-card .video-wrapper {
-    position: relative;
-    padding-bottom: 56.25%;
-    background: #000;
-  }
-  .main-video-card .video-wrapper iframe {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    border: none;
-  }
-  .main-video-card .video-info {
-    padding: 16px 20px;
-    border-top: 1px solid var(--card-border);
-  }
-  .main-video-card .video-info .label {
-    font-size: 11px;
-    color: var(--accent-teal);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    font-weight: 500;
-    margin-bottom: 6px;
-  }
-  .main-video-card .video-info h2 {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--text-primary);
-  }
-
-  /* 지역별 카드 */
-  .region-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 14px;
-    overflow: hidden;
-    margin-bottom: 16px;
-    transition: border-color 0.2s;
-  }
-  .region-card:hover {
-    border-color: #FE6B01;
-  }
-  .region-card .video-wrapper {
-    position: relative;
-    padding-bottom: 56.25%;
-    background: #000;
-  }
-  .region-card .video-wrapper iframe {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    border: none;
-  }
-  .region-card .card-body {
-    padding: 14px 18px 16px;
-  }
-  .region-card .region-meta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 8px;
-  }
-  .region-num {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 14px;
-    color: var(--text-muted);
-    font-weight: 500;
-    letter-spacing: 0.08em;
-  }
-  .region-date {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 14px;
-    color: var(--text-muted);
-  }
-  .region-card h3 {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 4px;
-  }
-  .region-card .desc {
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 13px;
-    color: var(--text-secondary);
-    line-height: 1.7;
-    margin-bottom: 12px;
-  }
-  .sketch-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 12px;
-    color: var(--accent-teal);
-    text-decoration: none;
-    border: 1px solid rgba(254,107,1,0.4);
-    padding: 6px 14px;
-    border-radius: 20px;
-    transition: background 0.2s;
-    font-weight: 400;
-  }
-  .sketch-link:hover {
-    background: rgba(254,107,1,0.08);
-  }
-  .sketch-link svg {
-    width: 13px; height: 13px;
-    stroke: var(--accent-main);
-    fill: none;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  /* 푸터 */
-  .footer-logo {
-    margin-bottom: 16px;
-  }
-  .footer-logo img {
-    width: 150px;
-    opacity: 0.75;
-  }
-  .footer {
-    text-align: center;
-    padding: 48px 24px 40px;
-    font-size: 15px;
-    color: var(--text-primary);
-    line-height: 1.8;
-  }
+  body { background: var(--bg); color: var(--text-primary); font-family: 'Noto Sans KR', sans-serif; font-weight: 300; min-height: 100vh; padding-bottom: 60px; }
+  .top-logo { text-align: center; padding: 24px 24px 0; }
+  .top-logo img { width: 180px; opacity: 0.9; }
+  .hero { padding: 56px 24px 16px; text-align: center; position: relative; }
+  .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #FE6B01, #ffad6b); }
+  .badge { display: inline-block; font-size: 15px; letter-spacing: 0.15em; color: var(--accent-main); border: 1px solid var(--accent-main); padding: 4px 14px; border-radius: 20px; margin-bottom: 20px; font-weight: 500; }
+  .hero h1 { font-family: 'Noto Serif KR', serif; font-size: clamp(22px, 6vw, 30px); font-weight: 600; line-height: 1.5; margin-bottom: 16px; color: var(--text-primary); }
+  .hero p { font-size: 17px; line-height: 1.9; color: var(--text-secondary); max-width: 460px; margin: 0 auto; }
+  .section { padding: 0 20px; max-width: 560px; margin: 0 auto; }
+  .section-title { font-size: 15px; letter-spacing: 0.12em; color: var(--text-muted); text-transform: uppercase; font-weight: 500; margin: 40px 0 16px; padding-left: 4px; }
+  .map-section { max-width: 560px; margin: 0 auto; padding: 0 20px; }
+  .map-container { border: 1px solid var(--card-border); border-radius: 16px; overflow: hidden; margin-top: 8px; }
+  #kakaoMap { width: 100%; height: 340px; }
+  .main-video-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; overflow: hidden; }
+  .main-video-card .video-wrapper { position: relative; padding-bottom: 56.25%; background: #000; }
+  .main-video-card .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+  .main-video-card .video-info { padding: 16px 20px; border-top: 1px solid var(--card-border); }
+  .main-video-card .video-info .label { font-size: 11px; color: var(--accent-teal); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; margin-bottom: 6px; }
+  .main-video-card .video-info h2 { font-family: 'Noto Serif KR', serif; font-size: 16px; font-weight: 700; color: var(--text-primary); }
+  .region-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; overflow: hidden; margin-bottom: 16px; transition: border-color 0.2s; }
+  .region-card:hover { border-color: #FE6B01; }
+  .region-card .video-wrapper { position: relative; padding-bottom: 56.25%; background: #000; }
+  .region-card .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+  .region-card .card-body { padding: 14px 18px 16px; }
+  .region-card .region-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .region-num { font-family: 'Noto Serif KR', serif; font-size: 14px; color: var(--text-muted); font-weight: 500; letter-spacing: 0.08em; }
+  .region-card h3 { font-family: 'Noto Serif KR', serif; font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+  .region-card .desc { font-family: 'Noto Sans KR', sans-serif; font-size: 13px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 12px; }
+  .sketch-link { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--accent-teal); text-decoration: none; border: 1px solid rgba(254,107,1,0.4); padding: 6px 14px; border-radius: 20px; transition: background 0.2s; font-weight: 400; }
+  .sketch-link:hover { background: rgba(254,107,1,0.08); }
+  .sketch-link svg { width: 13px; height: 13px; stroke: var(--accent-main); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .footer { text-align: center; padding: 48px 24px 40px; font-size: 15px; color: var(--text-primary); line-height: 1.8; }
 </style>
 </head>
 <body>
 
-<!-- =============================================
-     ✏️ 수정 영역: 이 아래 내용만 바꾸면 됩니다
-============================================= -->
 <script>
-// ✏️ [1] 상단 감사 문구
 const PAGE_CONFIG = {
   badge: "찾아가는 30주년",
   title: "30년의 동행,\n함께해 주셔서 감사합니다",
-  message: "2025년, 전국 11개 지역에서 만난\n소중한 순간들을 영상으로 전해드립니다.",
+  message: "2025년, 전국 11개 지역으로 직접 찾아가 만난\n소중한 순간들을 영상으로 전해드립니다.",
 };
 
-// ✏️ [2] 전체 대표 영상 (유튜브 영상 ID만 바꾸세요)
 const MAIN_VIDEO = {
-  youtubeId: "여기에_유튜브ID",   // 예: "dQw4w9WgXcQ"
+  youtubeId: "여기에_유튜브ID",
   label: "전체 하이라이트",
   title: "찾아가는 30주년 행사 메인 필름",
 };
 
-// ✏️ [3] 지역별 영상 10개 (순서대로 채워주세요)
 const REGIONS = [
-  {
-    region: "부산",
-    date: "2025.07.05",
-    youtubeId: "여기에_유튜브ID",
-    desc: ".",
-    sketchUrl: "https://www.dropbox.com/scl/fo/xe3ytdqb75ld6o0drtfhe/AM3hpFethcHD62RR-aTCZgE/%EB%B6%80%EC%82%B0?dl=0&rlkey=lngwyq1n1ikzlwugir3j4gxqc&subfolder_nav_tracking=1",   // 구글 드라이브 링크
-  },
-  {
-    region: "강원도",
-    date: "2025.08.23",
-    youtubeId: "여기에_유튜브ID",
-    desc: ".",
-    sketchUrl: "https://www.dropbox.com/scl/fo/xe3ytdqb75ld6o0drtfhe/ADWAVCEPKRbxnK5UiWhOdwI/%EC%9B%90%EC%A3%BC?dl=0&rlkey=lngwyq1n1ikzlwugir3j4gxqc&subfolder_nav_tracking=1",
-  },
-  {
-    region: "구미",
-    date: "2025.09.26",
-    youtubeId: "여기에_유튜브ID",
-    desc: ".",
-    sketchUrl: "https://www.dropbox.com/scl/fo/xe3ytdqb75ld6o0drtfhe/AB9HMVAXI_69eChQGpUeuAE/%EA%B5%AC%EB%AF%B8?dl=0&rlkey=lngwyq1n1ikzlwugir3j4gxqc&subfolder_nav_tracking=1",
-  },
-  {
-    region: "대구",
-    date: "2025.09.27",
-    youtubeId: "여기에_유튜브ID",
-    desc: ".",
-    sketchUrl: "https://www.dropbox.com/scl/fo/xe3ytdqb75ld6o0drtfhe/AEeDqDJK9s6HMfpoziUvA1g/%EB%8C%80%EA%B5%AC?dl=0&rlkey=lngwyq1n1ikzlwugir3j4gxqc&subfolder_nav_tracking=1",
-  },
-  {
-    region: "대전",
-    date: "2025.09.28",
-    youtubeId: "여기에_유튜브ID",
-    desc: ".",
-    sketchUrl: "https://www.dropbox.com/scl/fo/xe3ytdqb75ld6o0drtfhe/AOBF4hB3_rXn4zcRd8RW3Dc/%EB%8C%80%EC%A0%84?dl=0&rlkey=lngwyq1n1ikzlwugir3j4gxqc&subfolder_nav_tracking=1",
-  },
-  {
-    region: "제주도",
-    date: "2025.11.17",
-    youtubeId: "여기에_유튜브ID",
-    desc: ".",
-    sketchUrl: "https://www.dropbox.com/scl/fo/xe3ytdqb75ld6o0drtfhe/AAlKaOmnGnx2llr9zDLbs3U/%EC%A0%9C%EC%A3%BC?dl=0&rlkey=lngwyq1n1ikzlwugir3j4gxqc&subfolder_nav_tracking=1",
-  },
-  {
-    region: "서울(여의도)",
-    date: "2025.11.21",
-    youtubeId: "여기에_유튜브ID",
-    desc: ".",
-    sketchUrl: "https://www.dropbox.com/scl/fo/xe3ytdqb75ld6o0drtfhe/AP-71z0uy1zFVocRFpFNvPM/%EC%84%9C%EC%9A%B8?dl=0&rlkey=lngwyq1n1ikzlwugir3j4gxqc&subfolder_nav_tracking=1",
-  },
-  {
-    region: "서울(여의도)",
-    date: "2025.11.22",
-    youtubeId: "여기에_유튜브ID",
-    desc: ".",
-    sketchUrl: "https://www.dropbox.com/scl/fo/xe3ytdqb75ld6o0drtfhe/AP-71z0uy1zFVocRFpFNvPM/%EC%84%9C%EC%9A%B8?dl=0&rlkey=lngwyq1n1ikzlwugir3j4gxqc&subfolder_nav_tracking=1",
-  },
-  {
-    region: "파주",
-    date: "2025.11.23",
-    youtubeId: "여기에_유튜브ID",
-    desc: ".",
-    sketchUrl: "https://www.dropbox.com/scl/fo/xe3ytdqb75ld6o0drtfhe/AN0hs8VgZTqsfQzND4pG0b4/%ED%8C%8C%EC%A3%BC?dl=0&rlkey=lngwyq1n1ikzlwugir3j4gxqc&subfolder_nav_tracking=1",
-  },
-  {
-    region: "창원",
-    date: "2025.12.05",
-    youtubeId: "여기에_유튜브ID",
-    desc: ".",
-    sketchUrl: "https://www.dropbox.com/scl/fo/xe3ytdqb75ld6o0drtfhe/AAFjIja5ppQSaeL2qpxCT1g/%EC%B0%BD%EC%9B%90?dl=0&rlkey=lngwyq1n1ikzlwugir3j4gxqc&subfolder_nav_tracking=1",
-   },
-  {
-    region: "동탄",
-    date: "2025.12.18",
-    youtubeId: "여기에_유튜브ID",
-    desc: ".",
-    sketchUrl: "https://www.dropbox.com/scl/fo/xe3ytdqb75ld6o0drtfhe/AMWxxWgCKAu9vBVRjb3sZ-s/%EB%8F%99%ED%83%84?dl=0&rlkey=lngwyq1n1ikzlwugir3j4gxqc&subfolder_nav_tracking=1",
-  },
+  { region: "부산", date: "2025.07.05", youtubeId: "여기에_유튜브ID", desc: ".", sketchUrl: "https://www.dropbox.com/scl/fo/xe3ytdqb75ld6o0drtfhe/AM3hpFethcHD62RR-aTCZgE/%EB%B6%80%EC%82%B0?dl=0&rlkey=lngwyq1n1ikzlwugir3j4gxqc&subfolder_nav_tracking=1" },
+  { region: "강원도", date: "2025.08.23", youtubeId: "여기에_유튜브ID", desc: ".", sketchUrl: "https://www.dropbox.com/scl/fo/xe3ytdqb75ld6o0drtfhe/ADWAVCEPKRbxnK5UiWhOdwI/%EC%9B%90%EC%A3%BC?dl=0&rlkey=lngwyq1n1ikzlwugir3j4gxqc&subfolder_nav_tracking=1" },
+  { region: "구미", date: "2025.09.26", youtubeId: "여기에_유튜브ID", desc: ".", sketchUrl: "https://www.dropbox.com/scl/fo/xe3ytdqb75ld6o0drtfhe/AB9HMVAXI_69eChQGpUeuAE/%EA%B5%AC%EB%AF%B8?dl=0&rlkey=lngwyq1n1ikzlwugir3j4gxqc&subfolder_nav_tracking=1" },
+  { region: "대구", date: "2025.09.27", youtubeId: "여기에_유튜브ID", desc: ".", sketchUrl: "https://www.dropbox.com/scl/fo/xe3ytdqb75ld6o0drtfhe/AEeDqDJK9s6HMfpoziUvA1g/%EB%8C%80%EA%B5%AC?dl=0&rlkey=lngwyq1n1ikzlwugir3j4gxqc&subfolder_nav_tracking=1" },
+  { region: "대전", date: "2025.09.28", youtubeId: "여기에_유튜브ID", desc: ".", sketchUrl: "https://www.dropbox.com/scl/fo/xe3ytdqb75ld6o0drtfhe/AOBF4hB3_rXn4zcRd8RW3Dc/%EB%8C%80%EC%A0%84?dl=0&rlkey=lngwyq1n1ikzlwugir3j4gxqc&subfolder_nav_tracking=1" },
+  { region: "제주도", date: "2025.11.17", youtubeId: "여기에_유튜브ID", desc: ".", sketchUrl: "https://www.dropbox.com/scl/fo/xe3ytdqb75ld6o0drtfhe/AAlKaOmnGnx2llr9zDLbs3U/%EC%A0%9C%EC%A3%BC?dl=0&rlkey=lngwyq1n1ikzlwugir3j4gxqc&subfolder_nav_tracking=1" },
+  { region: "서울(여의도)", date: "2025.11.21", youtubeId: "여기에_유튜브ID", desc: ".", sketchUrl: "https://www.dropbox.com/scl/fo/xe3ytdqb75ld6o0drtfhe/AP-71z0uy1zFVocRFpFNvPM/%EC%84%9C%EC%9A%B8?dl=0&rlkey=lngwyq1n1ikzlwugir3j4gxqc&subfolder_nav_tracking=1" },
+  { region: "서울(여의도)", date: "2025.11.22", youtubeId: "여기에_유튜브ID", desc: ".", sketchUrl: "https://www.dropbox.com/scl/fo/xe3ytdqb75ld6o0drtfhe/AP-71z0uy1zFVocRFpFNvPM/%EC%84%9C%EC%9A%B8?dl=0&rlkey=lngwyq1n1ikzlwugir3j4gxqc&subfolder_nav_tracking=1" },
+  { region: "파주", date: "2025.11.23", youtubeId: "여기에_유튜브ID", desc: ".", sketchUrl: "https://www.dropbox.com/scl/fo/xe3ytdqb75ld6o0drtfhe/AN0hs8VgZTqsfQzND4pG0b4/%ED%8C%8C%EC%A3%BC?dl=0&rlkey=lngwyq1n1ikzlwugir3j4gxqc&subfolder_nav_tracking=1" },
+  { region: "창원", date: "2025.12.05", youtubeId: "여기에_유튜브ID", desc: ".", sketchUrl: "https://www.dropbox.com/scl/fo/xe3ytdqb75ld6o0drtfhe/AAFjIja5ppQSaeL2qpxCT1g/%EC%B0%BD%EC%9B%90?dl=0&rlkey=lngwyq1n1ikzlwugir3j4gxqc&subfolder_nav_tracking=1" },
+  { region: "동탄", date: "2025.12.18", youtubeId: "여기에_유튜브ID", desc: ".", sketchUrl: "https://www.dropbox.com/scl/fo/xe3ytdqb75ld6o0drtfhe/AMWxxWgCKAu9vBVRjb3sZ-s/%EB%8F%99%ED%83%84?dl=0&rlkey=lngwyq1n1ikzlwugir3j4gxqc&subfolder_nav_tracking=1" },
 ];
 </script>
-<!-- =============================================
-     여기서부터는 수정 불필요
-============================================= -->
 
 <div class="top-logo"><img src="logo.png" alt="월드비전 로고"></div>
 <div class="hero" id="hero-section"></div>
-
 
 <div class="map-section">
   <div class="map-container">
@@ -382,7 +95,6 @@ const REGIONS = [
 <div class="section">
   <div class="section-title" id="main-label"></div>
   <div class="main-video-card" id="main-video-card"></div>
-
   <div class="section-title" id="region-label">지역별 영상 · 11개</div>
   <div id="region-list"></div>
 </div>
@@ -390,7 +102,6 @@ const REGIONS = [
 <div class="footer" id="footer-section"></div>
 
 <script>
-// --- 히어로 렌더링 ---
 const hero = document.getElementById('hero-section');
 hero.innerHTML = `
   <div class="badge">${PAGE_CONFIG.badge}</div>
@@ -400,17 +111,11 @@ document.getElementById('sub-message').innerHTML = `
   <p>${PAGE_CONFIG.message.replace(/\n/g,'<br>')}</p>
 `;
 
-// --- 메인 영상 ---
 document.getElementById('main-label').textContent = '전체 영상 · 1개';
 const mainCard = document.getElementById('main-video-card');
 mainCard.innerHTML = `
   <div class="video-wrapper">
-    <iframe
-      src="https://www.youtube.com/embed/${MAIN_VIDEO.youtubeId}?rel=0"
-      title="${MAIN_VIDEO.title}"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
-    </iframe>
+    <iframe src="https://www.youtube.com/embed/${MAIN_VIDEO.youtubeId}?rel=0" title="${MAIN_VIDEO.title}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
   <div class="video-info">
     <div class="label">${MAIN_VIDEO.label}</div>
@@ -418,24 +123,16 @@ mainCard.innerHTML = `
   </div>
 `;
 
-// --- 지역별 카드 ---
 const regionList = document.getElementById('region-list');
-REGIONS.forEach((r, i) => {
+REGIONS.forEach((r) => {
   const card = document.createElement('div');
   card.className = 'region-card';
   card.innerHTML = `
     <div class="video-wrapper">
-      <iframe
-        src="https://www.youtube.com/embed/${r.youtubeId}?rel=0"
-        title="${r.region} 행사 영상"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-      </iframe>
+      <iframe src="https://www.youtube.com/embed/${r.youtubeId}?rel=0" title="${r.region} 행사 영상" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
     <div class="card-body">
-      <div class="region-meta">
-        <span class="region-num">${r.date}</span>
-      </div>
+      <div class="region-meta"><span class="region-num">${r.date}</span></div>
       <h3>${r.region}</h3>
       ${r.desc && r.desc !== "." ? `<p class="desc">${r.desc}</p>` : ""}
       <a href="${r.sketchUrl}" target="_blank" class="sketch-link">
@@ -447,56 +144,36 @@ REGIONS.forEach((r, i) => {
   regionList.appendChild(card);
 });
 
-
-// --- 카카오맵 동적 로드 ---
-function initKakaoMap() {
-  kakao.maps.load(function() {
-    var container = document.getElementById('kakaoMap');
-    var options = {
-      center: new kakao.maps.LatLng(36.5, 127.8),
-      level: 13
-    };
-    var map = new kakao.maps.Map(container, options);
-    var locations = [
-      { name: "부산",       lat: 35.1796, lng: 129.0756 },
-      { name: "강원(원주)",  lat: 37.3422, lng: 127.9202 },
-      { name: "구미",       lat: 36.1195, lng: 128.3446 },
-      { name: "대구",       lat: 35.8714, lng: 128.6014 },
-      { name: "대전",       lat: 36.3504, lng: 127.3845 },
-      { name: "제주",       lat: 33.4996, lng: 126.5312 },
-      { name: "서울(여의도)", lat: 37.5219, lng: 126.9245 },
-      { name: "파주",       lat: 37.7599, lng: 126.7801 },
-      { name: "창원",       lat: 35.2278, lng: 128.6811 },
-      { name: "동탄",       lat: 37.2009, lng: 127.0724 }
-    ];
-    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png';
-    var imageSize = new kakao.maps.Size(24, 35);
-    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-    locations.forEach(function(loc) {
-      var marker = new kakao.maps.Marker({
-        position: new kakao.maps.LatLng(loc.lat, loc.lng),
-        image: markerImage,
-        map: map
+function loadKakaoMap() {
+  var s = document.createElement('script');
+  s.src = 'https://dapi.kakao.com/v2/maps/sdk.js?appkey=fe8d26def9fdb12c9671af6b41eff05a&autoload=false';
+  s.onload = function() {
+    kakao.maps.load(function() {
+      var map = new kakao.maps.Map(document.getElementById('kakaoMap'), {
+        center: new kakao.maps.LatLng(36.5, 127.8), level: 13
       });
-      var infowindow = new kakao.maps.InfoWindow({
-        content: '<div style="padding:4px 8px;font-size:12px;font-family:Noto Sans KR;font-weight:500;">' + loc.name + '</div>'
+      var locs = [
+        {n:"부산",la:35.1796,lo:129.0756},{n:"강원(원주)",la:37.3422,lo:127.9202},
+        {n:"구미",la:36.1195,lo:128.3446},{n:"대구",la:35.8714,lo:128.6014},
+        {n:"대전",la:36.3504,lo:127.3845},{n:"제주",la:33.4996,lo:126.5312},
+        {n:"서울(여의도)",la:37.5219,lo:126.9245},{n:"파주",la:37.7599,lo:126.7801},
+        {n:"창원",la:35.2278,lo:128.6811},{n:"동탄",la:37.2009,lo:127.0724}
+      ];
+      var img = new kakao.maps.MarkerImage('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png', new kakao.maps.Size(24,35));
+      locs.forEach(function(loc) {
+        var m = new kakao.maps.Marker({position:new kakao.maps.LatLng(loc.la,loc.lo),image:img,map:map});
+        var iw = new kakao.maps.InfoWindow({content:'<div style="padding:4px 8px;font-size:12px;">'+loc.n+'</div>'});
+        kakao.maps.event.addListener(m,'mouseover',function(){iw.open(map,m);});
+        kakao.maps.event.addListener(m,'mouseout',function(){iw.close();});
       });
-      kakao.maps.event.addListener(marker, 'mouseover', function() { infowindow.open(map, marker); });
-      kakao.maps.event.addListener(marker, 'mouseout', function() { infowindow.close(); });
     });
-  });
+  };
+  document.head.appendChild(s);
 }
-var kakaoScript = document.createElement('script');
-kakaoScript.type = 'text/javascript';
-kakaoScript.src = '//dapi.kakao.com/v2/maps/sdk.js?appkey=fe8d26def9fdb12c9671af6b41eff05a&autoload=false';
-kakaoScript.onload = initKakaoMap;
-document.head.appendChild(kakaoScript);
+window.addEventListener('load', loadKakaoMap);
 
- 
-
-// --- 푸터 ---
 document.getElementById('footer-section').innerHTML = `
-  <p>월드비전 · 찾아가는 30주년 </p>
+  <p>월드비전 · 찾아가는 30주년</p>
   <p style="margin-top:10px">귀한 발걸음으로, 소중한 시간을 함께 나눠주셔서 진심으로 감사합니다. 🙏</p>
 `;
 </script>
