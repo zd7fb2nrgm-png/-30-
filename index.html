@@ -262,7 +262,6 @@
     line-height: 1.8;
   }
 </style>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fe8d26def9fdb12c9671af6b41eff05a&autoload=false"></script>
 </head>
 <body>
 
@@ -449,52 +448,51 @@ REGIONS.forEach((r, i) => {
 });
 
 
-// --- 카카오맵 ---
-kakao.maps.load(function() {
-  var container = document.getElementById('kakaoMap');
-  var options = {
-    center: new kakao.maps.LatLng(36.5, 127.8),
-    level: 13
-  };
-  var map = new kakao.maps.Map(container, options);
-
-  var locations = [
-    { name: "부산",     lat: 35.1796, lng: 129.0756 },
-    { name: "강원(원주)", lat: 37.3422, lng: 127.9202 },
-    { name: "구미",     lat: 36.1195, lng: 128.3446 },
-    { name: "대구",     lat: 35.8714, lng: 128.6014 },
-    { name: "대전",     lat: 36.3504, lng: 127.3845 },
-    { name: "제주",     lat: 33.4996, lng: 126.5312 },
-    { name: "서울(여의도)", lat: 37.5219, lng: 126.9245 },
-    { name: "파주",     lat: 37.7599, lng: 126.7801 },
-    { name: "창원",     lat: 35.2278, lng: 128.6811 },
-    { name: "동탄",     lat: 37.2009, lng: 127.0724 }
-  ];
-
-  var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png';
-  var imageSize = new kakao.maps.Size(24, 35);
-  var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-
-  locations.forEach(function(loc) {
-    var markerPosition = new kakao.maps.LatLng(loc.lat, loc.lng);
-    var marker = new kakao.maps.Marker({
-      position: markerPosition,
-      image: markerImage,
-      map: map
-    });
-
-    var infowindow = new kakao.maps.InfoWindow({
-      content: '<div style="padding:4px 8px;font-size:12px;font-family:Noto Sans KR;font-weight:500;">' + loc.name + '</div>'
-    });
-
-    kakao.maps.event.addListener(marker, 'mouseover', function() {
-      infowindow.open(map, marker);
-    });
-    kakao.maps.event.addListener(marker, 'mouseout', function() {
-      infowindow.close();
+// --- 카카오맵 동적 로드 ---
+function initKakaoMap() {
+  kakao.maps.load(function() {
+    var container = document.getElementById('kakaoMap');
+    var options = {
+      center: new kakao.maps.LatLng(36.5, 127.8),
+      level: 13
+    };
+    var map = new kakao.maps.Map(container, options);
+    var locations = [
+      { name: "부산",       lat: 35.1796, lng: 129.0756 },
+      { name: "강원(원주)",  lat: 37.3422, lng: 127.9202 },
+      { name: "구미",       lat: 36.1195, lng: 128.3446 },
+      { name: "대구",       lat: 35.8714, lng: 128.6014 },
+      { name: "대전",       lat: 36.3504, lng: 127.3845 },
+      { name: "제주",       lat: 33.4996, lng: 126.5312 },
+      { name: "서울(여의도)", lat: 37.5219, lng: 126.9245 },
+      { name: "파주",       lat: 37.7599, lng: 126.7801 },
+      { name: "창원",       lat: 35.2278, lng: 128.6811 },
+      { name: "동탄",       lat: 37.2009, lng: 127.0724 }
+    ];
+    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png';
+    var imageSize = new kakao.maps.Size(24, 35);
+    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+    locations.forEach(function(loc) {
+      var marker = new kakao.maps.Marker({
+        position: new kakao.maps.LatLng(loc.lat, loc.lng),
+        image: markerImage,
+        map: map
+      });
+      var infowindow = new kakao.maps.InfoWindow({
+        content: '<div style="padding:4px 8px;font-size:12px;font-family:Noto Sans KR;font-weight:500;">' + loc.name + '</div>'
+      });
+      kakao.maps.event.addListener(marker, 'mouseover', function() { infowindow.open(map, marker); });
+      kakao.maps.event.addListener(marker, 'mouseout', function() { infowindow.close(); });
     });
   });
-});
+}
+var kakaoScript = document.createElement('script');
+kakaoScript.type = 'text/javascript';
+kakaoScript.src = '//dapi.kakao.com/v2/maps/sdk.js?appkey=fe8d26def9fdb12c9671af6b41eff05a&autoload=false';
+kakaoScript.onload = initKakaoMap;
+document.head.appendChild(kakaoScript);
+
+ 
 
 // --- 푸터 ---
 document.getElementById('footer-section').innerHTML = `
